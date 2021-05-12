@@ -51,7 +51,11 @@ public class VisualizeControl {
             for (Pos pos : road) {
                 int cellX = 20 + pos.x * 20;
                 int cellY = 520 - ((pos.y + 1) * 20);
-                g.setColor(Color.RED);
+                if (pos.left) {
+                    g.setColor(Color.RED);
+                } else {
+                    g.setColor(Color.magenta);
+                }
                 g.fillOval(cellX + 2, cellY + 2,16,16);
             }
             road.clear();
@@ -60,7 +64,11 @@ public class VisualizeControl {
             for (Pos pos : road) {
                 int cellX = 20 + pos.x * 20;
                 int cellY = 520 - ((pos.y + 1) * 20);
-                g.setColor(Color.GREEN);
+                if (pos.equals(map.source)) {
+                    g.setColor(Color.GREEN);
+                } else {
+                    g.setColor(Color.RED);
+                }
                 g.fillRect(cellX, cellY, 20, 20);
             }
             g.setColor(Color.BLACK);

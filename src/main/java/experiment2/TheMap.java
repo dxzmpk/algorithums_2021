@@ -108,14 +108,19 @@ public class TheMap {
                 if (!(in == 0 && out == 0)) {
                     Pos cur = src.move(out, in);
                     if (in * out != 0) {
-                        cur.cos = src.cos + Math.sqrt(2);
+                        cur.gcos = src.gcos + Math.sqrt(2);
                     } else {
-                        cur.cos = src.cos + 1;
+                        cur.gcos = src.gcos + 1;
                     }
+
                     // 如果当前节点在地图中， 则加入可达到的节点
                     if (inMap(cur)) {
+                        // 不应加入不可到达的节点
+                        if (map[cur.x][cur.y] == Integer.MAX_VALUE) {
+                            continue;
+                        }
                         // 首先加上代价
-                        cur.cos += map[cur.x][cur.y];
+                        cur.gcos += map[cur.x][cur.y];
                         avails.add(cur);
                     }
                 }

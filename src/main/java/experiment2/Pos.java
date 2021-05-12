@@ -1,21 +1,21 @@
 package experiment2;
 
-import java.util.Objects;
-
-public class Pos {
+public class Pos implements Cloneable{
     int x;
     int y;
-    double cos;
+    double gcos;
+    boolean left = false;
+    boolean close = false;
 
     public Pos(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public Pos(int x, int y, double cos) {
+    public Pos(int x, int y, double gcos) {
         this.x = x;
         this.y = y;
-        this.cos = cos;
+        this.gcos = gcos;
     }
 
     Pos move(int detX, int detY) {
@@ -33,7 +33,7 @@ public class Pos {
 
     @Override
     public int hashCode() {
-        return x>>12 + y;
+        return 17*x + y;
     }
 
     @Override
@@ -41,7 +41,8 @@ public class Pos {
         return "Pos{" +
                        "x=" + x +
                        ", y=" + y +
-                       ", cos=" + cos +
+                       ", cos=" + gcos +
                        '}';
     }
+
 }
